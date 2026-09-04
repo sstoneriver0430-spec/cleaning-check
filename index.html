@@ -249,7 +249,7 @@ function Ring({ pct, size = 62, stroke = 7, color }) {
   const r = (size - stroke) / 2, c = 2 * Math.PI * r, off = c * (1 - Math.max(0, Math.min(100, pct)) / 100), mid = size / 2;
   return /* @__PURE__ */ React.createElement("svg", { width: size, height: size, viewBox: `0 0 ${size} ${size}`, style: { flexShrink: 0 } }, /* @__PURE__ */ React.createElement("circle", { cx: mid, cy: mid, r, fill: "none", stroke: C.lineSoft, strokeWidth: stroke }), /* @__PURE__ */ React.createElement("circle", { cx: mid, cy: mid, r, fill: "none", stroke: color, strokeWidth: stroke, strokeLinecap: "round", strokeDasharray: c, strokeDashoffset: off, transform: `rotate(-90 ${mid} ${mid})`, style: { transition: "stroke-dashoffset .45s ease" } }), /* @__PURE__ */ React.createElement("text", { x: mid, y: mid - 1, textAnchor: "middle", dominantBaseline: "central", fontSize: "18", fontWeight: "800", fill: C.ink, style: { fontVariantNumeric: "tabular-nums" } }, pct), /* @__PURE__ */ React.createElement("text", { x: mid, y: mid + 13, textAnchor: "middle", fontSize: "8.5", fontWeight: "700", fill: C.subLight }, "\uFF05"));
 }
-function App() {
+function CleaningApp() {
   const [me, setMe] = useState(lsGet("fk_me", ""));
   const [nameInput, setNameInput] = useState("");
   const [editingName, setEditingName] = useState(false);
@@ -587,7 +587,7 @@ function App() {
   );
   return /* @__PURE__ */ React.createElement("div", { style: { minHeight: "100vh", background: C.paper, fontFamily: "'Hiragino Kaku Gothic ProN','Hiragino Sans','Meiryo',system-ui,sans-serif", color: C.ink, WebkitFontSmoothing: "antialiased" } }, /* @__PURE__ */ React.createElement("style", null, `
         *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-        .fk-scroll{padding-bottom:calc(48px + env(safe-area-inset-bottom));}
+        .fk-scroll{padding-bottom:calc(96px + env(safe-area-inset-bottom));}
         .fk-appbar{padding-top:calc(12px + env(safe-area-inset-top));}
         .fk-row{transition:background .14s ease;} .fk-row:active{background:#F1F6FA;}
         .fk-check{transition:background .18s ease,border-color .18s ease,transform .12s cubic-bezier(.2,1.3,.5,1);} .fk-check:active{transform:scale(.88);}
@@ -623,6 +623,269 @@ function App() {
     const detail = Object.entries(r.rec).sort((a, b) => (a[1].at || "").localeCompare(b[1].at || ""));
     return /* @__PURE__ */ React.createElement("div", { key: r.sfx, style: { background: C.card, border: `1px solid ${C.line}`, borderRadius: 14, marginBottom: 8, overflow: "hidden" } }, /* @__PURE__ */ React.createElement("button", { onClick: () => setHistExpanded(open ? null : r.sfx), style: { width: "100%", textAlign: "left", background: "transparent", border: "none", cursor: "pointer", padding: "13px 14px", display: "flex", alignItems: "center", gap: 12 } }, /* @__PURE__ */ React.createElement("div", { style: { width: 74, flexShrink: 0, fontSize: 13.5, fontWeight: 800, color: C.ink } }, r.label), /* @__PURE__ */ React.createElement("div", { style: { flex: 1, minWidth: 0 } }, /* @__PURE__ */ React.createElement("div", { style: { height: 9, background: C.lineSoft, borderRadius: 999, overflow: "hidden" } }, /* @__PURE__ */ React.createElement("div", { style: { width: `${p}%`, height: "100%", background: full ? C.done : C.cyan, borderRadius: 999 } }))), /* @__PURE__ */ React.createElement("div", { style: { width: 72, flexShrink: 0, textAlign: "right", fontSize: 12.5, color: C.sub, fontVariantNumeric: "tabular-nums" } }, /* @__PURE__ */ React.createElement("span", { style: { fontSize: 15, fontWeight: 800, color: full ? C.done : C.ink } }, p, "\uFF05"), /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("span", { style: { fontSize: 10.5 } }, r.done, "/", r.total)), /* @__PURE__ */ React.createElement("div", { style: { color: C.subLight, fontSize: 12, flexShrink: 0 } }, open ? "\u25B2" : "\u25BC")), open && /* @__PURE__ */ React.createElement("div", { style: { borderTop: `1px solid ${C.lineSoft}`, padding: "10px 14px", background: "#FAFCFD" } }, detail.length === 0 ? /* @__PURE__ */ React.createElement("div", { style: { fontSize: 12.5, color: C.subLight } }, "\u30C1\u30A7\u30C3\u30AF\u306A\u3057") : detail.map(([id, v]) => /* @__PURE__ */ React.createElement("div", { key: id, style: { display: "flex", gap: 8, alignItems: "baseline", padding: "5px 0", fontSize: 12.5 } }, /* @__PURE__ */ React.createElement("span", { style: { color: C.done, fontWeight: 900, flexShrink: 0 } }, "\u2713"), /* @__PURE__ */ React.createElement("span", { style: { flex: 1, color: C.ink, lineHeight: 1.45 } }, itemText(id)), v.pic && /* @__PURE__ */ React.createElement("button", { onClick: () => openPhoto(histFreq, id, r.sfx, false), style: { background: C.doneSoft, border: `1px solid ${C.done}`, color: C.done, borderRadius: 7, padding: "2px 8px", fontSize: 11, fontWeight: 800, cursor: "pointer", flexShrink: 0 } }, "\u{1F4F7}"), /* @__PURE__ */ React.createElement("span", { style: { color: C.subLight, flexShrink: 0, fontSize: 11, fontVariantNumeric: "tabular-nums" } }, v.by, " ", v.at)))));
   }), !histLoading && histRows.length > 0 && /* @__PURE__ */ React.createElement("div", { style: { fontSize: 11, color: C.subLight, lineHeight: 1.7, marginTop: 10 } }, "\u9054\u6210\u7387\u306F\u300C\u305D\u306E\u671F\u9593\u306E\u30C1\u30A7\u30C3\u30AF\u6570 \xF7 \u73FE\u5728\u306E\u9805\u76EE\u6570\u300D\u3067\u3059\u3002\u884C\u3092\u30BF\u30C3\u30D7\u3067\u5185\u8A33\u3001\u{1F4F7}\u3067\u5199\u771F\u3092\u78BA\u8A8D\u3067\u304D\u307E\u3059\u3002"))), editing && /* @__PURE__ */ React.createElement("div", { onClick: () => setEditing(null), style: { position: "fixed", inset: 0, background: "rgba(18,41,63,.5)", display: "flex", alignItems: "flex-end", justifyContent: "center", zIndex: 60 } }, /* @__PURE__ */ React.createElement("div", { onClick: (e) => e.stopPropagation(), style: { background: "#fff", borderRadius: "20px 20px 0 0", padding: "20px 20px calc(20px + env(safe-area-inset-bottom))", width: "100%", maxWidth: 640, maxHeight: "90vh", overflowY: "auto", boxShadow: "0 -10px 44px rgba(0,0,0,.28)" } }, /* @__PURE__ */ React.createElement("div", { style: { width: 40, height: 4, borderRadius: 999, background: C.line, margin: "-6px auto 14px" } }), /* @__PURE__ */ React.createElement("div", { style: { fontSize: 16.5, fontWeight: 800, marginBottom: 16 } }, editing._new ? "\u9805\u76EE\u3092\u8FFD\u52A0" : "\u9805\u76EE\u3092\u7DE8\u96C6"), /* @__PURE__ */ React.createElement("label", { style: { fontSize: 12.5, fontWeight: 800, color: C.sub } }, "\u30C1\u30A7\u30C3\u30AF\u9805\u76EE"), /* @__PURE__ */ React.createElement("textarea", { value: editing.text, onChange: (e) => setEditing({ ...editing, text: e.target.value }), rows: 2, placeholder: "\u4F8B\uFF1A\u88FD\u6C37\u6A5F\u306F\u6E05\u6F54\u306B\u4FDD\u305F\u308C\u3066\u3044\u308B", style: { width: "100%", padding: "11px 13px", fontSize: 15, border: `1.5px solid ${C.line}`, borderRadius: 12, margin: "7px 0 16px", outline: "none", resize: "vertical" } }), /* @__PURE__ */ React.createElement("label", { style: { fontSize: 12.5, fontWeight: 800, color: C.sub, display: "block", marginBottom: 7 } }, "\u7A2E\u985E"), /* @__PURE__ */ React.createElement("div", { style: { marginBottom: 16 } }, /* @__PURE__ */ React.createElement(Seg, { value: editing.freq, options: FREQS, labels: ["\u30C7\u30A4\u30EA\u30FC", "\u30AF\u30ED\u30FC\u30BA", "\u30A6\u30A3\u30FC\u30AF\u30EA\u30FC", "\u30DE\u30F3\u30B9\u30EA\u30FC"], onChange: (v) => setEditing({ ...editing, freq: v, cat: v === "weekly" ? DAYS.indexOf(editing.cat) >= 0 ? editing.cat : "\u6708" : v === "monthly" ? "" : CATS.indexOf(editing.cat) >= 0 ? editing.cat : "\u30C8\u30C3\u30D7", note: v === "daily" ? editing.note || "" : "" }) })), editing.freq !== "monthly" && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("label", { style: { fontSize: 12.5, fontWeight: 800, color: C.sub, display: "block", marginBottom: 7 } }, editing.freq === "weekly" ? "\u66DC\u65E5" : "\u30DD\u30B8\u30B7\u30E7\u30F3"), /* @__PURE__ */ React.createElement("div", { style: { marginBottom: 16 } }, /* @__PURE__ */ React.createElement(Seg, { value: editing.cat, options: editing.freq === "weekly" ? DAYS : CATS, onChange: (v) => setEditing({ ...editing, cat: v }) }))), editing.freq === "daily" && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("label", { style: { fontSize: 12.5, fontWeight: 800, color: C.sub } }, "\u6642\u9593\u30E1\u30E2\uFF08\u4EFB\u610F\uFF09"), /* @__PURE__ */ React.createElement("input", { value: editing.note, onChange: (e) => setEditing({ ...editing, note: e.target.value }), placeholder: "\u4F8B\uFF1A15\u6642\u307E\u3067", style: { width: "100%", padding: "11px 13px", fontSize: 15, border: `1.5px solid ${C.line}`, borderRadius: 12, margin: "7px 0 16px", outline: "none" } })), hasPhoto(editing.freq) && /* @__PURE__ */ React.createElement("div", { style: { fontSize: 12, color: C.cyanDeep, background: C.cyanSoft, borderRadius: 10, padding: "9px 11px", marginBottom: 16 } }, "\u3053\u306E\u9805\u76EE\u306B\u306F\u6383\u9664\u5199\u771F\u3092\u6DFB\u4ED8\u3067\u304D\u307E\u3059\uFF08\u30C1\u30A7\u30C3\u30AF\u753B\u9762\u306E \u{1F4F7}\uFF09\u3002"), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", gap: 8 } }, !editing._new && /* @__PURE__ */ React.createElement("button", { onClick: () => deleteItem(editing.id), style: { background: "#fff", color: C.drop, border: `1.5px solid ${C.drop}`, borderRadius: 12, padding: "13px 15px", fontSize: 14, fontWeight: 800, cursor: "pointer" } }, "\u524A\u9664"), /* @__PURE__ */ React.createElement("button", { onClick: () => setEditing(null), style: { flex: 1, background: C.lineSoft, color: C.sub, border: "none", borderRadius: 12, padding: "13px", fontSize: 14, fontWeight: 800, cursor: "pointer" } }, "\u30AD\u30E3\u30F3\u30BB\u30EB"), /* @__PURE__ */ React.createElement("button", { onClick: saveItem, style: { flex: 2, background: C.cyan, color: "#062830", border: "none", borderRadius: 12, padding: "13px", fontSize: 14, fontWeight: 800, cursor: "pointer" } }, "\u4FDD\u5B58")))), editingName && /* @__PURE__ */ React.createElement("div", { onClick: closeName, style: { position: "fixed", inset: 0, background: "rgba(18,41,63,.5)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 70, padding: 20 } }, /* @__PURE__ */ React.createElement("div", { onClick: (e) => e.stopPropagation(), style: { background: "#fff", borderRadius: 20, padding: 22, width: "100%", maxWidth: 340, boxShadow: "0 16px 48px rgba(0,0,0,.28)" } }, /* @__PURE__ */ React.createElement("div", { style: { fontSize: 16.5, fontWeight: 800, marginBottom: 5 } }, "\u304A\u540D\u524D\u306F\uFF1F"), /* @__PURE__ */ React.createElement("div", { style: { fontSize: 12.5, color: C.sub, marginBottom: 15, lineHeight: 1.6 } }, "\u30C1\u30A7\u30C3\u30AF\u3057\u305F\u4EBA\u3068\u3057\u3066\u8A18\u9332\u3055\u308C\u307E\u3059\u3002\u6B21\u56DE\u304B\u3089\u306F\u81EA\u52D5\u3067\u3053\u306E\u540D\u524D\u3067\u8A18\u9332\u3055\u308C\u3001\u805E\u304B\u308C\u307E\u305B\u3093\u3002\u3053\u306E\u7AEF\u672B\u306B\u4FDD\u5B58\u3055\u308C\u307E\u3059\u3002"), /* @__PURE__ */ React.createElement("input", { autoFocus: true, value: nameInput, onChange: (e) => setNameInput(e.target.value), onKeyDown: (e) => e.key === "Enter" && saveName(), placeholder: "\u4F8B\uFF1A\u7530\u4E2D", style: { width: "100%", padding: "12px 13px", fontSize: 15, border: `1.5px solid ${C.line}`, borderRadius: 12, marginBottom: 15, outline: "none" } }), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", gap: 8 } }, /* @__PURE__ */ React.createElement("button", { onClick: closeName, style: { flex: 1, background: C.lineSoft, color: C.sub, border: "none", borderRadius: 12, padding: "12px", fontSize: 14, fontWeight: 800, cursor: "pointer" } }, "\u3084\u3081\u308B"), /* @__PURE__ */ React.createElement("button", { onClick: saveName, style: { flex: 2, background: C.cyan, color: "#062830", border: "none", borderRadius: 12, padding: "12px", fontSize: 14, fontWeight: 800, cursor: "pointer" } }, pendingCheck ? "\u3053\u308C\u3067\u30C1\u30A7\u30C3\u30AF" : "\u4FDD\u5B58")))));
+}
+const K_FLOAT_DEFAULT = 17e4;
+const CP_IDS = ["cp0", "cp1", "cp2"];
+const CP_LABELS_DEFAULT = ["15\u6642", "18\u6642", "\u30E9\u30B9\u30C8"];
+const KIN = ["c500", "c100", "c50", "c10"];
+const KIN_MULT = { c500: 500, c100: 5e3, c50: 2500, c10: 500 };
+const KIN_UNIT = { c500: "\u679A", c100: "\u672C", c50: "\u672C", c10: "\u672C" };
+const KIN_LABEL = { c500: "500\u5186", c100: "100\u5186", c50: "50\u5186", c10: "10\u5186" };
+const K_BLANK = { uriage: "", genkin: "", kenbaiki: "", c500: "", c100: "", c50: "", c10: "", checker: "" };
+const kNum = (x) => x === "" || x == null || isNaN(parseFloat(x)) ? 0 : parseFloat(x);
+const kYen = (n) => n === "" || n == null || isNaN(n) ? "\u2014" : "\xA5" + Math.round(Number(n)).toLocaleString("ja-JP");
+const kNn = (n) => n == null || isNaN(n) ? "\u2014" : Math.round(Number(n)).toLocaleString("ja-JP");
+const kEndOf = (g) => kNum(g) - Math.floor(kNum(g) / 1e3) * 1e3;
+const kAvg = (s, c) => c ? s / c : null;
+const kKinYen = (e) => KIN.reduce((s, k) => s + kNum(e && e[k]) * KIN_MULT[k], 0);
+const ckey = (day, cpId) => `${day}-${cpId}`;
+function KRow({ label, value, strong }) {
+  return /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 0" } }, /* @__PURE__ */ React.createElement("span", { style: { fontSize: 13.5, color: C.sub } }, label), /* @__PURE__ */ React.createElement("span", { style: { fontSize: strong ? 16 : 13.5, fontWeight: strong ? 800 : 700, color: C.ink, fontVariantNumeric: "tabular-nums" } }, value));
+}
+function KInput({ label, value, onChange, onFocus, onBlur, suffix, align, placeholder }) {
+  return /* @__PURE__ */ React.createElement("label", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, padding: "10px 0" } }, /* @__PURE__ */ React.createElement("span", { style: { fontSize: 13.5, color: C.sub, flexShrink: 0 } }, label), /* @__PURE__ */ React.createElement("span", { style: { display: "flex", alignItems: "center", gap: 6 } }, /* @__PURE__ */ React.createElement(
+    "input",
+    {
+      inputMode: align === "left" ? void 0 : "numeric",
+      value,
+      placeholder: placeholder || "",
+      onChange: (e) => onChange(e.target.value),
+      onFocus,
+      onBlur,
+      style: { width: 130, borderRadius: 11, border: `1.5px solid ${C.line}`, padding: "9px 11px", fontSize: 15.5, color: C.ink, outline: "none", textAlign: align === "left" ? "left" : "right", fontVariantNumeric: "tabular-nums" }
+    }
+  ), suffix && /* @__PURE__ */ React.createElement("span", { style: { fontSize: 11, color: C.subLight, width: 18 } }, suffix)));
+}
+function KDivider() {
+  return /* @__PURE__ */ React.createElement("div", { style: { borderTop: `1px solid ${C.lineSoft}` } });
+}
+function KPanel({ children, style }) {
+  return /* @__PURE__ */ React.createElement("div", { style: { background: C.card, border: `1px solid ${C.line}`, borderRadius: 16, padding: 16, marginBottom: 12, boxShadow: "0 1px 2px rgba(18,41,63,.04)", ...style || {} } }, children);
+}
+function KinshuApp() {
+  const now = /* @__PURE__ */ new Date();
+  const year = now.getFullYear(), month0 = now.getMonth();
+  const monthKey2 = `${year}-${pad(month0 + 1)}`;
+  const daysInMonth = new Date(year, month0 + 1, 0).getDate();
+  const wdOfDay = (d) => new Date(year, month0, d).getDay();
+  const isWE = (d) => {
+    const w = wdOfDay(d);
+    return w === 0 || w === 6;
+  };
+  const wkColor = (d) => wdOfDay(d) === 6 ? "#2563EB" : wdOfDay(d) === 0 ? C.drop : C.ink;
+  const rowTint = (d) => wdOfDay(d) === 0 ? "#FCEFEF" : wdOfDay(d) === 6 ? "#EEF4FD" : "#fff";
+  const [store, setStore] = useState({});
+  const [settings, setSettings] = useState({ float: K_FLOAT_DEFAULT, cps: CP_LABELS_DEFAULT.slice() });
+  const [dayIdx, setDayIdx] = useState(Math.min(now.getDate() - 1, daysInMonth - 1));
+  const [segIdx, setSegIdx] = useState(0);
+  const [showSettings, setShowSettings] = useState(false);
+  const [synced, setSynced] = useState(false);
+  const focusedRef = useRef(null);
+  const cfg = typeof configured !== "undefined" && configured && db;
+  const monthRef = () => db.collection("kinshu").doc(monthKey2);
+  const setRef = () => db.collection("kinshu").doc("_settings");
+  useEffect(() => {
+    if (cfg) {
+      const u1 = monthRef().onSnapshot((snap) => {
+        const remote = snap.exists ? snap.data().entries || {} : {};
+        setStore((prev) => {
+          const f = focusedRef.current;
+          const out = { ...remote };
+          if (f && prev[f]) out[f] = prev[f];
+          return out;
+        });
+        setSynced(true);
+      }, (e) => console.error(e));
+      const u2 = setRef().onSnapshot((snap) => {
+        if (snap.exists) {
+          const d = snap.data();
+          setSettings({ float: d.float != null ? d.float : K_FLOAT_DEFAULT, cps: d.cps && d.cps.length === 3 ? d.cps : CP_LABELS_DEFAULT.slice() });
+        } else {
+          setRef().set({ float: K_FLOAT_DEFAULT, cps: CP_LABELS_DEFAULT.slice() }).catch(() => {
+          });
+        }
+      }, (e) => console.error(e));
+      return () => {
+        u1();
+        u2();
+      };
+    } else {
+      try {
+        const m = localStorage.getItem("kinshu_" + monthKey2);
+        if (m) setStore(JSON.parse(m));
+      } catch (e) {
+      }
+      try {
+        const s = localStorage.getItem("kinshu_settings");
+        if (s) setSettings(JSON.parse(s));
+      } catch (e) {
+      }
+      setSynced(true);
+    }
+  }, [monthKey2]);
+  const cps = settings.cps || CP_LABELS_DEFAULT;
+  const isMonth = segIdx === 3;
+  const cpIdx = isMonth ? 2 : segIdx;
+  const cpId = CP_IDS[cpIdx];
+  const isLast = cpIdx === 2;
+  const dayNum = dayIdx + 1;
+  const k = ckey(dayNum, cpId);
+  const entry = store[k] || K_BLANK;
+  const carry = (field) => {
+    const gIndex = (dayNum - 1) * 3 + cpIdx;
+    for (let g = gIndex - 1; g >= 0; g--) {
+      const d = Math.floor(g / 3) + 1, ci = g % 3;
+      const e = store[ckey(d, CP_IDS[ci])];
+      if (e && e[field] !== "" && e[field] != null) return e[field];
+    }
+    return "";
+  };
+  const eff = (field) => entry[field] !== "" && entry[field] != null ? entry[field] : KIN.indexOf(field) >= 0 ? carry(field) : "";
+  const writeEntry = (kk, obj) => {
+    if (cfg) monthRef().set({ month: monthKey2, entries: { [kk]: obj } }, { merge: true }).catch((e) => console.error(e));
+    else {
+      const next = { ...store, [kk]: obj };
+      try {
+        localStorage.setItem("kinshu_" + monthKey2, JSON.stringify(next));
+      } catch (e) {
+      }
+    }
+  };
+  const setField = (field, val) => {
+    setStore((s) => {
+      const cur = { ...s[k] || K_BLANK };
+      cur[field] = val;
+      return { ...s, [k]: cur };
+    });
+  };
+  const commit = () => {
+    writeEntry(k, { ...store[k] || K_BLANK });
+  };
+  const saveSettings = (patch) => {
+    const next = { ...settings, ...patch };
+    setSettings(next);
+    if (cfg) setRef().set(next, { merge: true }).catch(() => {
+    });
+    else {
+      try {
+        localStorage.setItem("kinshu_settings", JSON.stringify(next));
+      } catch (e) {
+      }
+    }
+  };
+  const FLOAT = kNum(settings.float) || K_FLOAT_DEFAULT;
+  const genkin = kNum(eff("genkin")), uriage = kNum(eff("uriage")), kenbaiki = kNum(eff("kenbaiki"));
+  const kinsyu = kKinYen({ c500: eff("c500"), c100: eff("c100"), c50: eff("c50"), c10: eff("c10") });
+  const cashless = uriage - genkin;
+  const nyukin = Math.floor(genkin / 1e3) * 1e3;
+  const hasu = genkin - nyukin;
+  let uriageTotal = 0, hasuPrev = 0, hasuToday = 0;
+  for (let d = 1; d <= dayNum; d++) {
+    const e = store[ckey(d, "cp2")];
+    const t = e && e.genkin !== "" ? kEndOf(e.genkin) : 0;
+    if (e && e.uriage !== "") uriageTotal += kNum(e.uriage);
+    if (d < dayNum) hasuPrev += t;
+    else hasuToday = t;
+  }
+  const hasuTotal = hasuPrev + hasuToday;
+  const expected = isLast ? FLOAT + hasuTotal : FLOAT + hasuPrev + genkin;
+  const sa = kenbaiki + kinsyu - expected;
+  const mk = () => ({ l: 0, lc: 0, i: 0, ic: 0, d: 0, dc: 0, day: 0, dayc: 0 });
+  const A = mk(), WDg = mk(), WEg = mk();
+  let run = 0;
+  const rows = [];
+  for (let d = 1; d <= daysInMonth; d++) {
+    const l = store[ckey(d, "cp0")], m = store[ckey(d, "cp1")], e = store[ckey(d, "cp2")];
+    const lunch = l && l.uriage !== "" ? kNum(l.uriage) : null;
+    const to18 = m && m.uriage !== "" ? kNum(m.uriage) : null;
+    const day = e && e.uriage !== "" ? kNum(e.uriage) : null;
+    const idle = to18 != null && lunch != null ? to18 - lunch : null;
+    const dinner = day != null && to18 != null ? day - to18 : null;
+    if (day != null) run += day;
+    [A, isWE(d) ? WEg : WDg].forEach((g) => {
+      if (lunch != null) {
+        g.l += lunch;
+        g.lc++;
+      }
+      if (idle != null) {
+        g.i += idle;
+        g.ic++;
+      }
+      if (dinner != null) {
+        g.d += dinner;
+        g.dc++;
+      }
+      if (day != null) {
+        g.day += day;
+        g.dayc++;
+      }
+    });
+    rows.push({ d, lunch, idle, dinner, day, cum: day != null ? run : null });
+  }
+  const mAvg = kAvg(A.day, A.dayc) || 0;
+  const mChakuchi = mAvg * daysInMonth;
+  const lAvg = kAvg(A.l, A.lc), iAvg = kAvg(A.i, A.ic), dAvg = kAvg(A.d, A.dc);
+  const saSt = sa < 0 ? { c: C.drop, t: "\u8AA4\u5DEE\u3042\u308A" } : sa > 0 ? { c: "#B7791F", t: "\u904E\u5270" } : { c: C.done, t: "\u4E00\u81F4" };
+  const SEG_LABELS = [cps[0], cps[1], cps[2], "\u6708\u6B21"];
+  const cpLabel = cps[cpIdx];
+  const th = { padding: "10px 10px", fontWeight: 700, whiteSpace: "nowrap", fontSize: 11.5 };
+  const td = { padding: "8px 10px", textAlign: "right", fontVariantNumeric: "tabular-nums", fontSize: 12 };
+  return /* @__PURE__ */ React.createElement("div", { style: { minHeight: "100vh", background: C.paper, fontFamily: "'Hiragino Kaku Gothic ProN','Hiragino Sans','Meiryo',system-ui,sans-serif", color: C.ink } }, /* @__PURE__ */ React.createElement("div", { className: "fk-appbar", style: { position: "sticky", top: 0, zIndex: 30, background: `linear-gradient(180deg, ${C.ink} 0%, ${C.inkSoft} 100%)`, color: "#fff", boxShadow: "0 4px 18px rgba(18,41,63,.22)" } }, /* @__PURE__ */ React.createElement("div", { style: { maxWidth: 640, margin: "0 auto", padding: "0 14px" } }, /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 } }, /* @__PURE__ */ React.createElement("div", { style: { flexShrink: 0 } }, /* @__PURE__ */ React.createElement("div", { style: { fontSize: 10.5, letterSpacing: ".18em", color: C.cyan, fontWeight: 800 } }, "\u30D5\u30E9\u30F3\u8ED2"), /* @__PURE__ */ React.createElement("div", { style: { fontSize: 19, fontWeight: 800, marginTop: 1 } }, "\u91D1\u7A2E\u7BA1\u7406\u8868")), /* @__PURE__ */ React.createElement(
+    "button",
+    {
+      className: "fk-tap",
+      onClick: () => setShowSettings((v) => !v),
+      style: { background: showSettings ? C.cyan : "rgba(255,255,255,.14)", color: showSettings ? "#062830" : "#fff", border: `1px solid ${showSettings ? C.cyan : "rgba(255,255,255,.22)"}`, borderRadius: 999, padding: "7px 13px", fontSize: 12.5, fontWeight: 800, cursor: "pointer" }
+    },
+    "\u8A2D\u5B9A"
+  )), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", gap: 3, marginTop: 12 } }, SEG_LABELS.map((c, i) => {
+    const on = i === segIdx;
+    return /* @__PURE__ */ React.createElement("button", { key: i, onClick: () => setSegIdx(i), style: { flex: 1, position: "relative", border: "none", cursor: "pointer", background: on ? C.paper : "transparent", color: on ? C.ink : "rgba(255,255,255,.72)", borderRadius: "11px 11px 0 0", padding: "9px 2px 10px", fontWeight: 800, fontSize: 12.5 } }, on && /* @__PURE__ */ React.createElement("span", { style: { position: "absolute", top: 0, left: 10, right: 10, height: 3, background: C.cyan, borderRadius: 3 } }), c);
+  })))), /* @__PURE__ */ React.createElement("div", { style: { maxWidth: 640, margin: "0 auto", paddingLeft: 12, paddingRight: 12, paddingTop: 14, paddingBottom: "calc(96px + env(safe-area-inset-bottom))" } }, /* @__PURE__ */ React.createElement("div", { style: { fontSize: 12.5, color: C.sub, fontWeight: 700, marginBottom: 12 } }, year, "\u5E74", month0 + 1, "\u6708\u3000", cfg ? synced ? "\u540C\u671F\u4E2D" : "\u63A5\u7D9A\u4E2D\u2026" : "\u3053\u306E\u7AEF\u672B\u306B\u4FDD\u5B58"), showSettings && /* @__PURE__ */ React.createElement(KPanel, null, /* @__PURE__ */ React.createElement(KInput, { label: "\u30EC\u30B8\u91D1\uFF08\u91E3\u92AD\u6E96\u5099\u91D1\uFF09", value: String(settings.float), onChange: (v) => saveSettings({ float: kNum(v) }), suffix: "\u5186" }), /* @__PURE__ */ React.createElement(KDivider, null), /* @__PURE__ */ React.createElement("div", { style: { fontSize: 11.5, color: C.subLight, margin: "8px 0 4px" } }, "\u6642\u9593\u5E2F\u306E\u540D\u524D"), [0, 1, 2].map((i) => /* @__PURE__ */ React.createElement(React.Fragment, { key: i }, /* @__PURE__ */ React.createElement(KInput, { label: `\u30C1\u30A7\u30C3\u30AF${i + 1}`, value: cps[i], onChange: (v) => {
+    const n = cps.slice();
+    n[i] = v;
+    saveSettings({ cps: n });
+  }, align: "left" }), i < 2 && /* @__PURE__ */ React.createElement(KDivider, null))), /* @__PURE__ */ React.createElement("div", { style: { fontSize: 11, color: C.subLight, marginTop: 8, lineHeight: 1.6 } }, "\u203B \u5909\u66F4\u306F\u5168\u54E1\u306B\u5171\u6709\u3055\u308C\u307E\u3059\u3002\u904E\u53BB\u306B\u5165\u529B\u3057\u305F\u6570\u5B57\u306F\u305D\u306E\u307E\u307E\u6B8B\u308A\u307E\u3059\u3002")), !isMonth && /* @__PURE__ */ React.createElement("div", { style: { display: "flex", gap: 6, overflowX: "auto", paddingBottom: 8, marginBottom: 12 } }, rows.map((r) => {
+    const on = r.d - 1 === dayIdx;
+    return /* @__PURE__ */ React.createElement("button", { key: r.d, onClick: () => setDayIdx(r.d - 1), style: { flexShrink: 0, width: 48, padding: "6px 0", borderRadius: 12, textAlign: "center", cursor: "pointer", background: on ? C.cyan : "#fff", border: on ? "none" : `1px solid ${C.line}` } }, /* @__PURE__ */ React.createElement("div", { style: { fontSize: 14, fontWeight: 800, lineHeight: 1, color: on ? "#062830" : wkColor(r.d), fontVariantNumeric: "tabular-nums" } }, r.d), /* @__PURE__ */ React.createElement("div", { style: { fontSize: 10, lineHeight: 1, marginTop: 3, color: on ? "#062830" : wkColor(r.d), opacity: on ? 0.9 : 0.7 } }, WD[wdOfDay(r.d)]));
+  })), isMonth ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { style: { background: C.card, border: `1px solid ${C.line}`, borderRadius: 16, overflow: "hidden", marginBottom: 12, boxShadow: "0 1px 2px rgba(18,41,63,.04)" } }, /* @__PURE__ */ React.createElement("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr 1fr" } }, [{ n: "\u30E9\u30F3\u30C1", v: lAvg, c: "#C58A2E", s: "\u301C" + cps[0] }, { n: "\u30A2\u30A4\u30C9\u30EB", v: iAvg, c: "#5b6472", s: cps[0] + "\u2013" + cps[1] }, { n: "\u30C7\u30A3\u30CA\u30FC", v: dAvg, c: "#3b4a7a", s: cps[1] + "\u301C" }].map((x, i) => /* @__PURE__ */ React.createElement("div", { key: x.n, style: { padding: 12, textAlign: "center", borderLeft: i ? `1px solid ${C.lineSoft}` : "none" } }, /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "center", justifyContent: "center", gap: 5 } }, /* @__PURE__ */ React.createElement("span", { style: { width: 6, height: 6, borderRadius: 999, background: x.c } }), /* @__PURE__ */ React.createElement("span", { style: { fontSize: 12, fontWeight: 800, color: C.ink } }, x.n)), /* @__PURE__ */ React.createElement("div", { style: { fontSize: 10, color: C.subLight, margin: "1px 0 2px" } }, x.s), /* @__PURE__ */ React.createElement("div", { style: { fontSize: 15.5, fontWeight: 800, color: x.c, fontVariantNumeric: "tabular-nums" } }, kNn(x.v))))), /* @__PURE__ */ React.createElement("div", { style: { textAlign: "center", fontSize: 10, padding: "5px 0", background: "#F7F9FB", color: C.sub } }, "1\u65E5\u3042\u305F\u308A\u5E73\u5747\u58F2\u4E0A")), /* @__PURE__ */ React.createElement("div", { style: { background: C.card, border: `1px solid ${C.line}`, borderRadius: 16, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", marginBottom: 14, boxShadow: "0 1px 2px rgba(18,41,63,.04)" } }, [{ l: "\u5408\u8A08\u58F2\u4E0A", v: kYen(A.day) }, { l: `\u65E5\u5E73\u5747\uFF08${A.dayc}\u65E5\uFF09`, v: kYen(mAvg) }, { l: "\u7740\u5730\u898B\u8FBC\u307F", v: kYen(mChakuchi) }].map((x, i) => /* @__PURE__ */ React.createElement("div", { key: x.l, style: { padding: 12, borderLeft: i ? `1px solid ${C.lineSoft}` : "none" } }, /* @__PURE__ */ React.createElement("div", { style: { fontSize: 11, color: C.sub, marginBottom: 1 } }, x.l), /* @__PURE__ */ React.createElement("div", { style: { fontSize: 13.5, fontWeight: 800, color: C.ink, fontVariantNumeric: "tabular-nums" } }, x.v)))), /* @__PURE__ */ React.createElement("div", { style: { background: C.card, border: `1px solid ${C.line}`, borderRadius: 16, overflow: "hidden", boxShadow: "0 1px 2px rgba(18,41,63,.04)" } }, /* @__PURE__ */ React.createElement("div", { style: { overflowX: "auto" } }, /* @__PURE__ */ React.createElement("table", { style: { width: "100%", borderCollapse: "collapse" } }, /* @__PURE__ */ React.createElement("thead", null, /* @__PURE__ */ React.createElement("tr", { style: { background: C.ink, color: "#fff" } }, /* @__PURE__ */ React.createElement("th", { style: { ...th, textAlign: "left", position: "sticky", left: 0, background: C.ink } }, "\u65E5"), /* @__PURE__ */ React.createElement("th", { style: { ...th, textAlign: "right" } }, "\u30E9\u30F3\u30C1"), /* @__PURE__ */ React.createElement("th", { style: { ...th, textAlign: "right" } }, "\u30A2\u30A4\u30C9\u30EB"), /* @__PURE__ */ React.createElement("th", { style: { ...th, textAlign: "right" } }, "\u30C7\u30A3\u30CA\u30FC"), /* @__PURE__ */ React.createElement("th", { style: { ...th, textAlign: "right" } }, "\u5F53\u65E5"), /* @__PURE__ */ React.createElement("th", { style: { ...th, textAlign: "right" } }, "\u7D2F\u8A08"))), /* @__PURE__ */ React.createElement("tbody", null, rows.map((r) => {
+    const bg = rowTint(r.d), has = r.day != null;
+    return /* @__PURE__ */ React.createElement("tr", { key: r.d, style: { borderTop: `1px solid ${C.lineSoft}`, color: has ? C.ink : C.subLight } }, /* @__PURE__ */ React.createElement("td", { style: { padding: "7px 10px", textAlign: "left", position: "sticky", left: 0, background: bg, whiteSpace: "nowrap" } }, /* @__PURE__ */ React.createElement("span", { style: { fontWeight: 800, color: wkColor(r.d), fontVariantNumeric: "tabular-nums" } }, r.d), /* @__PURE__ */ React.createElement("span", { style: { marginLeft: 4, fontSize: 10, color: wkColor(r.d) } }, WD[wdOfDay(r.d)])), /* @__PURE__ */ React.createElement("td", { style: { ...td, background: bg } }, kNn(r.lunch)), /* @__PURE__ */ React.createElement("td", { style: { ...td, background: bg } }, kNn(r.idle)), /* @__PURE__ */ React.createElement("td", { style: { ...td, background: bg } }, kNn(r.dinner)), /* @__PURE__ */ React.createElement("td", { style: { ...td, background: bg, fontWeight: 700 } }, kNn(r.day)), /* @__PURE__ */ React.createElement("td", { style: { ...td, background: bg, color: C.subLight } }, kNn(r.cum)));
+  })), /* @__PURE__ */ React.createElement("tfoot", null, [
+    { label: "\u5E73\u5747", l: lAvg, i: iAvg, d: dAvg, day: mAvg, top: true, lc: C.ink },
+    { label: "\u5E73\u65E5\u5E73\u5747", l: kAvg(WDg.l, WDg.lc), i: kAvg(WDg.i, WDg.ic), d: kAvg(WDg.d, WDg.dc), day: kAvg(WDg.day, WDg.dayc), lc: C.ink },
+    { label: "\u571F\u65E5\u5E73\u5747", l: kAvg(WEg.l, WEg.lc), i: kAvg(WEg.i, WEg.ic), d: kAvg(WEg.d, WEg.dc), day: kAvg(WEg.day, WEg.dayc), lc: C.drop }
+  ].map((f, i) => /* @__PURE__ */ React.createElement("tr", { key: i, style: { background: f.top ? "#F2EFE7" : "#fff", color: C.ink, borderTop: f.top ? `2px solid ${C.cyan}` : `1px solid ${C.lineSoft}` } }, /* @__PURE__ */ React.createElement("td", { style: { padding: "8px 10px", textAlign: "left", fontWeight: 800, position: "sticky", left: 0, background: f.top ? "#F2EFE7" : "#fff", color: f.lc, whiteSpace: "nowrap" } }, f.label), /* @__PURE__ */ React.createElement("td", { style: { ...td, fontWeight: 800 } }, kNn(f.l)), /* @__PURE__ */ React.createElement("td", { style: { ...td, fontWeight: 800 } }, kNn(f.i)), /* @__PURE__ */ React.createElement("td", { style: { ...td, fontWeight: 800 } }, kNn(f.d)), /* @__PURE__ */ React.createElement("td", { style: { ...td, fontWeight: 800 } }, kNn(f.day)), /* @__PURE__ */ React.createElement("td", { style: { ...td } }))))))), /* @__PURE__ */ React.createElement("div", { style: { fontSize: 11.5, color: C.subLight, lineHeight: 1.7, marginTop: 12, padding: "0 2px" } }, "\u30E9\u30F3\u30C1=", cps[0], "\u58F2\u4E0A\uFF0F\u30A2\u30A4\u30C9\u30EB=", cps[1], "\u58F2\u4E0A\u2212", cps[0], "\u58F2\u4E0A\uFF0F\u30C7\u30A3\u30CA\u30FC=\u5F53\u65E5\u58F2\u4E0A\u2212", cps[1], "\u58F2\u4E0A\u3002", /* @__PURE__ */ React.createElement("br", null), "\u571F\u65E5\uFF1D\u571F\u66DC\u30FB\u65E5\u66DC\uFF08\u795D\u65E5\u306E\u81EA\u52D5\u5224\u5B9A\u306F\u3057\u3066\u3044\u307E\u305B\u3093\uFF09\u3002", cps[1], "\u304C\u672A\u5165\u529B\u306E\u65E5\u306F\u30A2\u30A4\u30C9\u30EB\u30FB\u30C7\u30A3\u30CA\u30FC\u304C\u7A7A\u6B04\u306B\u306A\u308A\u307E\u3059\u3002")) : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { style: { background: "#fff", border: `1.5px solid ${saSt.c}`, borderRadius: 16, padding: 16, marginBottom: 12, boxShadow: "0 1px 2px rgba(18,41,63,.04)" } }, /* @__PURE__ */ React.createElement("span", { style: { fontSize: 12, fontWeight: 800, color: saSt.c } }, "\u8AA4\u5DEE \xB7 ", saSt.t), /* @__PURE__ */ React.createElement("div", { style: { fontSize: 30, fontWeight: 800, color: saSt.c, marginTop: 3, fontVariantNumeric: "tabular-nums" } }, kYen(sa)), sa < 0 && /* @__PURE__ */ React.createElement("div", { style: { fontSize: 12, color: C.drop, marginTop: 3 } }, "\u5E97\u9577\u306B\u9023\u7D61\u3057\u3066\u304F\u3060\u3055\u3044")), isLast && /* @__PURE__ */ React.createElement(KPanel, null, /* @__PURE__ */ React.createElement(KRow, { label: "\u7D2F\u8A08\u58F2\u4E0A", value: kYen(uriageTotal), strong: true }), /* @__PURE__ */ React.createElement(KDivider, null), /* @__PURE__ */ React.createElement(KRow, { label: "\u30AD\u30E3\u30C3\u30B7\u30E5\u30EC\u30B9", value: kYen(cashless) }), /* @__PURE__ */ React.createElement(KDivider, null), /* @__PURE__ */ React.createElement(KRow, { label: "\u5165\u91D1\u984D", value: kYen(nyukin) }), /* @__PURE__ */ React.createElement(KDivider, null), /* @__PURE__ */ React.createElement(KRow, { label: "\u786C\u8CA8\u7AEF\u6570\uFF08\u5F53\u65E5\uFF09", value: kYen(hasu) }), /* @__PURE__ */ React.createElement(KDivider, null), /* @__PURE__ */ React.createElement(KRow, { label: "\u786C\u8CA8\u7AEF\u6570\uFF08\u7D2F\u8A08\uFF09", value: kYen(hasuTotal) })), /* @__PURE__ */ React.createElement(KPanel, null, /* @__PURE__ */ React.createElement(KInput, { label: cpLabel + "\u58F2\u4E0A", value: eff("uriage"), onChange: (v) => setField("uriage", v), onFocus: () => focusedRef.current = k, onBlur: () => {
+    focusedRef.current = null;
+    commit();
+  }, suffix: "\u5186" }), /* @__PURE__ */ React.createElement(KDivider, null), /* @__PURE__ */ React.createElement(KInput, { label: "\u73FE\u91D1\u4F1A\u8A08", value: eff("genkin"), onChange: (v) => setField("genkin", v), onFocus: () => focusedRef.current = k, onBlur: () => {
+    focusedRef.current = null;
+    commit();
+  }, suffix: "\u5186" }), /* @__PURE__ */ React.createElement(KDivider, null), /* @__PURE__ */ React.createElement(KInput, { label: "\u5238\u58F2\u6A5F\u91D1\u984D", value: eff("kenbaiki"), onChange: (v) => setField("kenbaiki", v), onFocus: () => focusedRef.current = k, onBlur: () => {
+    focusedRef.current = null;
+    commit();
+  }, suffix: "\u5186" })), /* @__PURE__ */ React.createElement(KPanel, null, /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 2 } }, /* @__PURE__ */ React.createElement("span", { style: { fontSize: 12, fontWeight: 800, color: C.cyanDeep } }, "\u91D1\u7A2E"), /* @__PURE__ */ React.createElement("span", { style: { fontSize: 11, color: C.subLight } }, "\u524D\u56DE\u306E\u307E\u307E\u30FB\u5909\u308F\u3063\u305F\u6642\u3060\u3051\u5165\u529B")), KIN.map((kk, i) => /* @__PURE__ */ React.createElement(React.Fragment, { key: kk }, /* @__PURE__ */ React.createElement(KInput, { label: KIN_LABEL[kk], value: entry[kk] != null ? entry[kk] : "", placeholder: carry(kk) !== "" ? String(carry(kk)) : "", onChange: (v) => setField(kk, v), onFocus: () => focusedRef.current = k, onBlur: () => {
+    focusedRef.current = null;
+    commit();
+  }, suffix: KIN_UNIT[kk] }), i < KIN.length - 1 && /* @__PURE__ */ React.createElement(KDivider, null))), /* @__PURE__ */ React.createElement("div", { style: { marginTop: 8, textAlign: "right", fontSize: 12, color: C.subLight, fontVariantNumeric: "tabular-nums" } }, "\u91D1\u7A2E\u5408\u8A08 ", kYen(kinsyu))), /* @__PURE__ */ React.createElement(KPanel, null, /* @__PURE__ */ React.createElement(KInput, { label: "\u91D1\u7A2E\u78BA\u8A8D\u8005", value: entry.checker || "", onChange: (v) => setField("checker", v), onFocus: () => focusedRef.current = k, onBlur: () => {
+    focusedRef.current = null;
+    commit();
+  }, align: "left" })), /* @__PURE__ */ React.createElement("div", { style: { background: "#EEF1F5", borderRadius: 14, padding: 14, fontSize: 12, color: C.sub, lineHeight: 1.7 } }, /* @__PURE__ */ React.createElement("div", { style: { fontWeight: 800, color: C.ink, marginBottom: 2 } }, "\u8AA4\u5DEE\u306E\u7A81\u5408"), isLast ? `\u30EC\u30B8\u91D1${kNn(FLOAT)} + \u786C\u8CA8\u7AEF\u6570\u7D2F\u8A08 ${kNn(hasuTotal)} = ${kYen(expected)}` : `\u30EC\u30B8\u91D1${kNn(FLOAT)} + \u524D\u65E5\u7AEF\u6570\u7D2F\u8A08 ${kNn(hasuPrev)} + \u73FE\u91D1\u4F1A\u8A08 = ${kYen(expected)}`, /* @__PURE__ */ React.createElement("br", null), "\u5238\u58F2\u6A5F + \u91D1\u7A2E = ", kYen(kenbaiki + kinsyu), "\uFF0F\u5DEE = ", kYen(sa)))));
+}
+function App() {
+  const [mode, setMode] = useState("clean");
+  const navItem = (kk, label, icon) => {
+    const on = mode === kk;
+    return /* @__PURE__ */ React.createElement("button", { key: kk, onClick: () => setMode(kk), className: "fk-tap", style: { flex: 1, position: "relative", border: "none", background: "transparent", cursor: "pointer", padding: "9px 0 10px", color: on ? C.cyanDeep : C.sub, fontWeight: 800 } }, on && /* @__PURE__ */ React.createElement("span", { style: { position: "absolute", top: 0, left: "30%", right: "30%", height: 3, background: C.cyan, borderRadius: 3 } }), /* @__PURE__ */ React.createElement("div", { style: { fontSize: 20, lineHeight: 1 } }, icon), /* @__PURE__ */ React.createElement("div", { style: { fontSize: 11, marginTop: 3 } }, label));
+  };
+  return /* @__PURE__ */ React.createElement("div", { style: { minHeight: "100vh", background: C.paper } }, /* @__PURE__ */ React.createElement("style", null, `
+        *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+        .fk-appbar{padding-top:calc(12px + env(safe-area-inset-top));}
+        .fk-tap:active{transform:scale(.97);}
+        input:focus{border-color:#0EA5B7 !important;}
+        button:focus-visible,[role=button]:focus-visible{outline:2px solid #0EA5B7;outline-offset:2px;}
+        @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
+      `), mode === "clean" ? /* @__PURE__ */ React.createElement(CleaningApp, null) : /* @__PURE__ */ React.createElement(KinshuApp, null), /* @__PURE__ */ React.createElement("div", { style: { position: "fixed", left: 0, right: 0, bottom: 0, zIndex: 45, background: "#fff", borderTop: `1px solid ${C.line}`, boxShadow: "0 -2px 12px rgba(18,41,63,.08)", display: "flex", paddingBottom: "env(safe-area-inset-bottom)" } }, /* @__PURE__ */ React.createElement("div", { style: { maxWidth: 640, margin: "0 auto", width: "100%", display: "flex" } }, navItem("clean", "\u6383\u9664", "\u{1F9F9}"), navItem("kinshu", "\u91D1\u7A2E", "\u{1FA99}"))));
 }
 ReactDOM.createRoot(document.getElementById("root")).render(/* @__PURE__ */ React.createElement(App, null));
 
